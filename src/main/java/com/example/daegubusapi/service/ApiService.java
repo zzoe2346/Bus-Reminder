@@ -21,7 +21,7 @@ public class ApiService {
         String url = String.format("https://businfo.daegu.go.kr:8095/dbms_web/map?searchText=%s", busStopName);
 
         // Set the path to the ChromeDriver executable
-        System.setProperty("webdriver.edge.driver", "edgedriver/msedgedriver");
+        System.setProperty("webdriver.edge.driver", "edgedriver/msedgedriverLinux");
         // Enable headless mode
         EdgeOptions options = new EdgeOptions();
         options.addArguments("headless");
