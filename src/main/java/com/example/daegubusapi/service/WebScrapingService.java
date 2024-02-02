@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -36,9 +37,12 @@ public class WebScrapingService {
         //options.addArguments("headless");
 
         //options.addArguments("disable-gpu");
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.chromedriver().setup();
 
-        WebDriver driver = new EdgeDriver();
+
+//        WebDriver driver = new EdgeDriver();
+        WebDriver driver = new ChromeDriver();
+
 
         // Navigate to the URL of the dynamic page
         driver.get(url);
