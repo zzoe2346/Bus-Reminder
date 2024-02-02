@@ -32,13 +32,13 @@ public class WebScrapingService {
         //System.setProperty("webdriver.edge.driver", "edgedriver/msedgedriverLinux");
 
         // Enable headless mode
-        EdgeOptions options = new EdgeOptions();
-        options.addArguments("headless");
+        //EdgeOptions options = new EdgeOptions();
+        //options.addArguments("headless");
 
         //options.addArguments("disable-gpu");
         WebDriverManager.edgedriver().setup();
 
-        WebDriver driver = new EdgeDriver(options);
+        WebDriver driver = new EdgeDriver();
 
         // Navigate to the URL of the dynamic page
         driver.get(url);
