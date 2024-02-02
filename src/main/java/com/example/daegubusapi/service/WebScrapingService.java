@@ -1,6 +1,7 @@
 package com.example.daegubusapi.service;
 
 import com.example.daegubusapi.domain.Bus;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,20 +20,23 @@ import java.util.List;
 
 @Service
 public class WebScrapingService {
+    WebDriver webDriver;
 
     public static List<Bus> retrieveBusesByScraping(String busStopName) {
         System.out.println("Scraping Start!");
         String url = String.format("https://businfo.daegu.go.kr:8095/dbms_web/map?searchText=%s", busStopName);
 
+
         // Set the path to the ChromeDriver executable
        // System.setProperty("webdriver.edge.driver", "edgedriver/msedgedriver");
-        System.setProperty("webdriver.edge.driver", "edgedriver/msedgedriverLinux");
+        //System.setProperty("webdriver.edge.driver", "edgedriver/msedgedriverLinux");
 
         // Enable headless mode
         EdgeOptions options = new EdgeOptions();
         options.addArguments("headless");
 
         //options.addArguments("disable-gpu");
+        WebDriverManager.edgedriver().setup();
 
         WebDriver driver = new EdgeDriver(options);
 
