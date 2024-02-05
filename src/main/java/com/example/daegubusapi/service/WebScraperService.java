@@ -8,8 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class WebScrapingService {
+public class WebScraperService {
     WebDriver webDriver;
 
     public static List<Bus> retrieveBusesByScraping(String busStopName) {
