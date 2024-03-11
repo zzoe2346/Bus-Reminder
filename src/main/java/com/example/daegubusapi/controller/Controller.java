@@ -1,16 +1,13 @@
 package com.example.daegubusapi.controller;
 
 
-
 import com.example.daegubusapi.domain.Bus;
 import com.example.daegubusapi.service.ApiCallService;
 import com.example.daegubusapi.service.PushNotificationCallService;
 import com.example.daegubusapi.service.TargetCheckService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.daegubusapi.service.WebScraperService;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,8 @@ public class Controller {
     public List<Bus> getBusesAtBusStop(@PathVariable String busStopName) {
         List<Bus> buses = webScraperService.retrieveBusesByScraping(busStopName);
         return buses;
+
+
     }
 
     @GetMapping("/bus")
@@ -43,15 +42,16 @@ public class Controller {
         return buses;
     }
 
-    @GetMapping("/systemStart")
+    @GetMapping("/bus-arrival-info")
     public void BusScheduleChecker(@RequestParam String nodeId,
                                    @RequestParam int targetNumber,
-                                   @RequestParam String targetBus)  {
-        System.out.println("run");
+                                   @RequestParam String targetBus) {
+        System.out.println("버스 미리 알림 서비스를 요청 받았습니다");
         //반복적으로 호출
         while (true) {
             List<Bus> buses = apiCallService.call(nodeId);
-            if (targetCheckService.isSuccess(buses,targetBus,targetNumber)) {
+            System.out.println("공공 API 호출에 성공했습니다!");
+            if (targetCheckService.isSuccess(buses, targetBus, targetNumber)) {
                 pushNotificationCallService.push();
                 return;
             }
@@ -61,13 +61,6 @@ public class Controller {
                 throw new RuntimeException(e);
             }
         }
-
-
-
-
-
-        //
-
     }
 
 }

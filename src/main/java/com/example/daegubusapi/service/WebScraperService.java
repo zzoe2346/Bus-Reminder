@@ -53,13 +53,18 @@ public class WebScraperService {
             public Boolean apply(WebDriver driver) {
                 // Get the text of the document
                 String str = Jsoup.parse(driver.getPageSource()).text();
-                System.out.println("----");
-                System.out.println(str);
-                System.out.println("----");
+                System.out.println("☆PageSource를 성공적으로 읽었습니다.");
+               // System.out.println(str);
+                //System.out.println("----");
                 int length = str.length();
 
                 // Check if the text length is at least 500
-                System.out.println(length);
+                if(length>=500){
+                    System.out.println("☆성공적으로 데이터를 수집 했습니다!");
+                }else {
+                    System.out.println("☆아직 목표하는 데이터를 수집 못 했습니다. wait...");
+                }
+                //System.out.println(length);
                 return length >= 500;
             }
         });
@@ -67,11 +72,12 @@ public class WebScraperService {
 
         // Parse the page source using Jsoup
         Document document = Jsoup.parse(driver.getPageSource());
-        System.out.println(document.text());
+        System.out.println("☆parsing 완료.");
+        //System.out.println(document.text());
 
         // Use Jsoup to extract information from the parsed document
         String title = document.title();
-        System.out.println("Page Title: " + title);
+        //System.out.println("Page Title: " + title);
 
         // You can use Jsoup selectors to extract specific elements
         // For example, extracting text from an element with id="exampleElement"
@@ -108,6 +114,8 @@ public class WebScraperService {
             buses.add(new Bus(routeName, extractNumber(remainingBusStops)));
 
         }
+        System.out.println("☆전처리 완료. ");
+        System.out.println("☆response 성공...끝");
         return buses;
     }
 
