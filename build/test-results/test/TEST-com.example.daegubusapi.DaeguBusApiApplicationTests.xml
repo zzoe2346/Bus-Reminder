@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.daegubusapi.DaeguBusApiApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-25T09:12:37" hostname="Seongui-MacBookAir.local" time="3.287">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.example.daegubusapi.DaeguBusApiApplicationTests" time="3.287"/>
+  <system-out><![CDATA[18:12:36.445 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.daegubusapi.DaeguBusApiApplicationTests]: DaeguBusApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:12:36.490 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.daegubusapi.DaeguBusApiApplication for test class com.example.daegubusapi.DaeguBusApiApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2024-03-25T18:12:36.636+09:00  INFO 65179 --- [    Test worker] c.e.d.DaeguBusApiApplicationTests        : Starting DaeguBusApiApplicationTests using Java 17.0.9 with PID 65179 (started by seonghunjeong in /Users/seonghunjeong/final bus api/daegu-bus-api)
+2024-03-25T18:12:36.637+09:00  INFO 65179 --- [    Test worker] c.e.d.DaeguBusApiApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-03-25T18:12:36.891+09:00  INFO 65179 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-03-25T18:12:36.893+09:00  INFO 65179 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-03-25T18:12:36.916+09:00  INFO 65179 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2024-03-25T18:12:37.404+09:00  INFO 65179 --- [    Test worker] c.e.d.DaeguBusApiApplicationTests        : Started DaeguBusApiApplicationTests in 0.856 seconds (process running for 1.359)
+openAPI에 요청을 시작합니다.
+{"response":{"header":{"resultCode":"00","resultMsg":"NORMAL SERVICE."},"body":{"items":{"item":[{"arrprevstationcnt":15,"arrtime":1935,"nodeid":"DGB7031010800","nodenm":"서도초등학교앞","routeid":"DGB3000323000","routeno":323,"routetp":"간선버스","vehicletp":"일반차량"},{"arrprevstationcnt":3,"arrtime":294,"nodeid":"DGB7031010800","nodenm":"서도초등학교앞","routeid":"DGB3000323000","routeno":323,"routetp":"간선버스","vehicletp":"일반차량"},{"arrprevstationcnt":7,"arrtime":520,"nodeid":"DGB7031010800","nodenm":"서도초등학교앞","routeid":"DGB3000405000","routeno":405,"routetp":"간선버스","vehicletp":"저상버스"},{"arrprevstationcnt":3,"arrtime":195,"nodeid":"DGB7031010800","nodenm":"서도초등학교앞","routeid":"DGB3000405000","routeno":405,"routetp":"간선버스","vehicletp":"일반차량"}]},"numOfRows":10,"pageNo":1,"totalCount":4}}}
+323 15
+323 3
+405 7
+405 3
+Status Code: 201
+Response: {"data":{"id":"fa8a0cb5-3579-4bd2-9f1c-56c5b7ccc3e4"}}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
