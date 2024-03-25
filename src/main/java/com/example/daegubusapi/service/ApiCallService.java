@@ -15,14 +15,13 @@ public class ApiCallService {
 
 
     public List<Bus> call(String nodeId) {
-        System.out.println("공공 API에 요청한 버스정류장의 현재 정보를 요청중 입니다.");
+        System.out.println("openAPI에 요청을 시작합니다.");
         //nodeId = "DGB7031010800";
 
         String url = "https://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList?serviceKey=KaMN32QU5iddZ2p7xxSw3BodH5qyNiC2WYFDg2bQMK7QT2SdOitDuL8YT23425Eu7QkCnfmZZpd9rM9RXc4bTA==&pageNo=1&numOfRows=10&_type=json&cityCode=22&nodeId="
                 + nodeId;
 
 
-        System.out.println(url);
 
         // Create RestTemplate
         RestTemplate restTemplate = new RestTemplate();
@@ -30,7 +29,6 @@ public class ApiCallService {
         // Make a GET request to the API
         String json = restTemplate.getForObject(url, String.class);
         System.out.println(json);
-
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = null;
@@ -68,7 +66,5 @@ public class ApiCallService {
             System.out.println(bus.getBusNumber() + " " + bus.getRemainingBusStop());
         }
         return buses;
-
-
     }
 }

@@ -46,10 +46,15 @@ public class Controller {
     public void BusScheduleChecker(@RequestParam String nodeId,
                                    @RequestParam int targetNumber,
                                    @RequestParam String targetBus) {
+
         System.out.println("버스 미리 알림 서비스를 요청 받았습니다");
+
         //반복적으로 호출
         while (true) {
             List<Bus> buses = apiCallService.call(nodeId);
+            if(buses.isEmpty()){
+                System.out.println("FAIL FAIL");
+            }
             System.out.println("공공 API 호출에 성공했습니다!");
             if (targetCheckService.isSuccess(buses, targetBus, targetNumber)) {
                 pushNotificationCallService.push();

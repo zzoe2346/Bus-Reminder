@@ -1,4 +1,4 @@
-정# Base image
+# Base image
 #FROM openjdk:17-jdk
 #
 ## 소스 코드 복사
@@ -16,7 +16,8 @@
 ## 애플리케이션 실행
 #CMD ["java", "-jar", "build/libs/myapp.jar"]
 
-FROM openjdk:17-jdk
+#FROM openjdk:17-jdk
+FROM openjdk:11-jdk
 ARG JAR_FILE=./build/libs/daegu-bus-api-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
