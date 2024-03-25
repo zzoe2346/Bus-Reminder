@@ -14,7 +14,7 @@ public class PushNotificationCallService {
         String url = "https://api.flarelane.com/v1/projects/e6060748-0244-4a5b-8029-2c9d6a2f0876/notifications";
         String token = "8R6iUE3lSyz4aW_O0cjFm";
 
-        String requestBody = "{\"targetType\":\"device\",\"targetIds\":[\"88fb7f8b-b66c-4aa6-ba34-a544e4171a4c\"],\"title\":\"안녕하세요\",\"body\":\"빨리 출발하세요\"}";
+        String requestBody = "{\"targetType\":\"segment\",\"targetIds\":[\"088953b3-1394-4e01-9e32-05994093ee31\"],\"title\":\"안녕하세요\",\"body\":\"빨리 출발하세요\"}";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

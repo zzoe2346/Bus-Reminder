@@ -39,6 +39,7 @@ public class Controller {
         System.out.println("Test Start!");
         List<Bus> buses = new ArrayList<>();
         buses.add(new Bus("527", 2));
+        pushNotificationCallService.push();
         return buses;
     }
 
