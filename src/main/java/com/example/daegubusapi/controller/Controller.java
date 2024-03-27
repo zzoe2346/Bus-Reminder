@@ -21,7 +21,7 @@ public class Controller {
     private final TargetCheckService targetCheckService;
     private final UserIdMap userIdMap;
 
-    public Controller(UserIdMap userIdMap,PushNotificationCallService pushNotificationCallService, WebScraperService webScraperService, ApiCallService apiCallService, TargetCheckService targetCheckService) {
+    public Controller(UserIdMap userIdMap, PushNotificationCallService pushNotificationCallService, WebScraperService webScraperService, ApiCallService apiCallService, TargetCheckService targetCheckService) {
         this.pushNotificationCallService = pushNotificationCallService;
         this.webScraperService = webScraperService;
         this.apiCallService = apiCallService;
@@ -33,20 +33,20 @@ public class Controller {
     public List<Bus> getBusesAtBusStop(@PathVariable String busStopName) {
         List<Bus> buses = webScraperService.retrieveBusesByScraping(busStopName);
         return buses;
-
-
     }
 
-    @GetMapping("/bus")
-    public List<Bus> testing() {
+    @GetMapping("/test")
+    public List<Bus> testing(@RequestParam String userId) {
         System.out.println("Test Start!");
         List<Bus> buses = new ArrayList<>();
         buses.add(new Bus("527", 2));
-        pushNotificationCallService.push();
+        pushNotificationCallService.push(userId);
         return buses;
     }
+
     @GetMapping("/cancel")
-    public void cancel(@RequestParam String userId){
+    public void cancel(@RequestParam String userId) {
+        System.out.println(userId + "의 취소 요청이 왔습니다.");
         userIdMap.setCancel(userId);
     }
 
@@ -54,38 +54,46 @@ public class Controller {
     public void BusScheduleChecker(@RequestParam String nodeId,
                                    @RequestParam int targetNumber,
                                    @RequestParam String targetBus,
-                                   @RequestParam String userId,
-                                   @RequestParam String deviceId) {
+                                   @RequestParam String userId) {
 
-        System.out.println("버스 미리 알림 서비스를 요청 받았습니다");
-        System.out.println("deviceId = "+deviceId);
+        System.out.println(userId + "로부터 버스알리미 서비스를 요청 받았습니다");
         //검증
         userIdMap.setUserId(userId);
         //반복적으로 호출
         boolean isValidBus = true;
         while (true) {
-            if(userIdMap.isCancel(userId)) {
-                System.out.println("취소 요청으로인해 루프가 중단됩니다.");
+            if (userIdMap.isCancel(userId)) {
+                System.out.println(userId + "의 취소요청으로인해 중단됩니다");
                 break;
             }
             List<Bus> buses = apiCallService.call(nodeId);
-            if(buses.isEmpty()){
+            if (buses.isEmpty()) {
                 System.out.println("FAIL FAIL");
             }
-            System.out.println("공공 API 호출에 성공했습니다!");
-            //제출된 버스 번호가 존재하는지
-            //isValidBus=isvalidationServeice.checkBusName(buses);
-            //if(!isValidBus) pushNotificationCallService.wrongBusInputMessagePush();
 
             if (targetCheckService.isSuccess(buses, targetBus, targetNumber)) {
-                pushNotificationCallService.push();
+                pushNotificationCallService.push(userId);
+                System.out.println(userId+"의 요청이 완료되었습니다...");
                 return;
             }
-            try {
-                Thread.sleep(20000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            int count = 0;
+            while (true) {
+                if(count==19) break;
+                System.out.print("◼\uFE0E ");
+                count++;
+                try {
+                    Thread.sleep(1000); // 1초 대기
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+//                    e.printStackTrace();
+                }
             }
+            System.out.println();
+//            try {
+//                Thread.sleep(20000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
         }
     }
 

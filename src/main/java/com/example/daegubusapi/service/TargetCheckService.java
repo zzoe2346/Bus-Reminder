@@ -8,16 +8,18 @@ import java.util.List;
 public class TargetCheckService {
     public boolean isSuccess(List<Bus> buses, String targetBus, int targetNumber) {
 
-        System.out.println("버스가 사용자의 요청 수치에 올때까지 반복해서 호출합니다...");
+        System.out.println(targetBus+" 버스가 "+targetNumber+"개 정류장 전인지 확인합니다");
         for (Bus bus : buses) {
             if(bus.getBusNumber().equals(targetBus)){
                 if (bus.getRemainingBusStop() == targetNumber) {
-                    System.out.println(bus.getRemainingBusStop());
-                    System.out.println(targetNumber);
+                   // System.out.println(bus.getRemainingBusStop());
+                    //System.out.println(targetNumber);
+                    System.out.println("확인결과: 성공!" +targetBus+" 버스가 "+targetNumber+"개 정류장 전 입니다");
                     return true;
                 }
             }
         }
+        System.out.println("실패입니다. 곧 다시 버스 도착 정보를 요청합니다...");
         return false;
 
     }
