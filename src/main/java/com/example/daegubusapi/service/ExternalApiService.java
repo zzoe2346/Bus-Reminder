@@ -1,6 +1,6 @@
 package com.example.daegubusapi.service;
 
-import com.example.daegubusapi.domain.Bus;
+import com.example.daegubusapi.model.Bus;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,22 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ApiCallService {
-
-
-    public List<Bus> call(String nodeId) {
-        System.out.println(nodeId+"정류소의 버스 도착 정보를 요청했습니다");
+public class ExternalApiService {
+    public List<Bus> requestBusArrivalInfo(String nodeId) {
+        System.out.println(nodeId + "정류소의 버스 도착 정보를 요청했습니다");
         String url = "https://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList?serviceKey=KaMN32QU5iddZ2p7xxSw3BodH5qyNiC2WYFDg2bQMK7QT2SdOitDuL8YT23425Eu7QkCnfmZZpd9rM9RXc4bTA==&pageNo=1&numOfRows=10&_type=json&cityCode=22&nodeId="
                 + nodeId;
-
-
 
         // Create RestTemplate
         RestTemplate restTemplate = new RestTemplate();
 
         // Make a GET request to the API
         String json = restTemplate.getForObject(url, String.class);
-        //System.out.println(json);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = null;
@@ -61,7 +56,7 @@ public class ApiCallService {
         }
 
         for (Bus bus : buses) {
-            System.out.println("버스번호: "+bus.getBusNumber() + " 남은 정류장 수: " + bus.getRemainingBusStop());
+            System.out.println("버스번호: " + bus.getBusNumber() + " 남은 정류장 수: " + bus.getRemainingBusStop());
         }
         return buses;
     }

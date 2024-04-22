@@ -1,15 +1,12 @@
-package com.example.daegubusapi.domain;
+package com.example.daegubusapi.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
-public class UserIdMap {
+@Service
+public class UserSessionService {
     private Map<String, Boolean> map = new HashMap<>();
 
     public void setUserId(String userId) {

@@ -1,6 +1,6 @@
 package com.example.daegubusapi.service;
 
-import com.example.daegubusapi.domain.Bus;
+import com.example.daegubusapi.model.Bus;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

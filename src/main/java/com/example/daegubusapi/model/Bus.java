@@ -1,4 +1,4 @@
-package com.example.daegubusapi.domain;
+package com.example.daegubusapi.model;
 
 public class Bus {
     private String busNumber;
